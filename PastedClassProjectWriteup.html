@@ -8,10 +8,6 @@
 
 <p>We load the training data into R using the following command:</p>
 
-<p>training <- read.csv(&quot;C:/Users/Daniel/Desktop/pml-training.csv&quot;,header=T,sep=&quot;,&quot;)</p>
-
-<p>Write-up would show:</p>
-
 <p>training <- read.csv(&quot;C:/.../pml-training.csv&quot;,header=T,sep=&quot;,&quot;)</p>
 
 <p>Our next step is to narrow it down to vaiables that seem relevant. We want to disregard clearly irrevelant variables or variables that wouldn't work in an analysis); to predict X, we want to use data related to X.  Since metadata will be less useful to this analysis than the raw data, we'll ignore variables like skewness or kurtosis. Primarily, we'll be interested in the variables in the dataset starting with &quot;gyros,&quot; &quot;accel,&quot; &quot;magnet,&quot; &quot;roll,&quot; &quot;pitch,&quot; and &quot;yaw.&quot; The dependent variable, classe, will also be included in the dataset that we analyze.</p>
@@ -27,6 +23,10 @@
 <p>We use the following type of command to graph the data:</p>
 
 <p>plot(training$classe,training$[variable name])</p>
+
+<p>An example graph for the variable roll_belt is shown below:</p>
+
+<img src="images/image1.jpg">
 
 <p>We get observations for each variable as shown below:</p>
 
@@ -51,6 +51,10 @@
 <p>plot(training$[variable name], col=training$classe)</p>
 
 <p>This makes it easier to see relationships and dependencies among the independent variables and the classe.</p>
+
+<p>An example graph for the variable roll_belt is shown below:</p>
+
+<img src="images/image2.jpg">
 
 <p>The results are as follows:</p>
 
@@ -92,9 +96,17 @@
 
 <p>The model successfully predicts the correct classe for the 1000 observations in the training set (since it was fit using the training set).</p>
 
+<p>This confusion matrix is shown below:</p>
+
+<img src="images/image3.jpg">
+
 <p>To test it on a new sample, we take the last 500 observations from the randomized training set (we used the first 2,000 to create the model), and we test our model on this:</p>
 
 <p>trainingtail <- tail(training,500) predictions <- predict(modFit,newdata=trainingtail) confusionMatrix(predictions,trainingtail$classe)</p>
+
+<p>This confusion matrix is shown below:</p>
+
+<img src="images/image4.jpg">
 
 <p>According to the confusion matrix, the model has an out-of-sample accuracy of approximately 88.2%, or an error of 11.8%. The 95% confidence interval for the accuracy is (85.04%,90.89%), so I can say with 95% confidence that the actual out-of-sample error will be between 9.11% and 14.96%.</p>
 
