@@ -24,9 +24,7 @@
 
 <p>plot(training$classe,training$[variable name])</p>
 
-<p>An example graph for the variable roll_belt is shown below:</p>
-
-<img src="images/image1.jpg">
+<p>An example graph for the variable roll_belt is shown in the image1.jpg file in the images folder.</p>
 
 <p>We get observations for each variable as shown below:</p>
 
@@ -52,9 +50,7 @@
 
 <p>This makes it easier to see relationships and dependencies among the independent variables and the classe.</p>
 
-<p>An example graph for the variable roll_belt is shown below:</p>
-
-<img src="images/image2.jpg">
+<p>An example graph for the variable roll_belt is shown in the image2.jpg file in the images folder.</p>
 
 <p>The results are as follows:</p>
 
@@ -96,17 +92,13 @@
 
 <p>The model successfully predicts the correct classe for the 1000 observations in the training set (since it was fit using the training set).</p>
 
-<p>This confusion matrix is shown below:</p>
-
-<img src="images/image3.jpg">
+<p>This confusion matrix is shown in the image3.jpg file in the images folder.</p>
 
 <p>To test it on a new sample, we take the last 500 observations from the randomized training set (we used the first 2,000 to create the model), and we test our model on this:</p>
 
 <p>trainingtail <- tail(training,500) predictions <- predict(modFit,newdata=trainingtail) confusionMatrix(predictions,trainingtail$classe)</p>
 
-<p>This confusion matrix is shown below:</p>
-
-<img src="images/image4.jpg">
+<p>This confusion matrix is shown in the image4.jpg file in the images folder.</p>
 
 <p>According to the confusion matrix, the model has an out-of-sample accuracy of approximately 88.2%, or an error of 11.8%. The 95% confidence interval for the accuracy is (85.04%,90.89%), so I can say with 95% confidence that the actual out-of-sample error will be between 9.11% and 14.96%.</p>
 
