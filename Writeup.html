@@ -352,6 +352,12 @@ confusionMatrix(predictions,trainingtail$classe)</p>
 
 <p>According to the confusion matrix, the model has an out-of-sample accuracy of approximately 88.2%, or an error of 11.8%. The 95% confidence interval for the accuracy is (85.04%,90.89%), so I can say with 95% confidence that the actual out-of-sample error will be between 9.11% and 14.96%.</p>
 
+<p>The model uses bootstrapping for estimating out-of-sample error, rather than cross-validation. Although the size of the training set was reduced from the original size of approximately 20,000 observations to 2,000 observations, this is still a particularly large set of observations, so bootstrapping is an acceptable method for measuring out-of-sample error. However, to get a measure with less bias, we could pass the following command to R:</p>
+
+<p>modFit <- train(classe ~ .,data=training,method=&quot;rf&quot;,prox=TRUE,preProcess=c(&quot;center&quot;,&quot;scale&quot;),number=10)</p>
+
+<p>This would create 10 samples for the cross-validation, which would produce a measure that is less biased but with higher variance than the measure produced through bootstrapping.</p>
+
 <p>Citations:</p>
 
 <p>Velloso, E.; Bulling, A.; Gellersen, H.; Ugulino, W.; Fuks, H. Qualitative Activity Recognition of Weight Lifting Exercises. Proceedings of 4th International Conference in Cooperation with SIGCHI (Augmented Human '13). Stuttgart, Germany: ACM SIGCHI, 2013.</p>
