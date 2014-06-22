@@ -358,6 +358,16 @@ confusionMatrix(predictions,trainingtail$classe)</p>
 
 <p>This would create 10 samples for the cross-validation, which would produce a measure that is less biased but with higher variance than the measure produced through bootstrapping.</p>
 
+<p>Finally, if we wanted to see which variables are the most important to the model (i.e. which variables would be weighted most heavily), we would pass the importance parameter in the train function, as shown below:</p>
+
+<p>modFit <- train(classe ~ .,data=traininghead,method=&quot;rf&quot;,prox=TRUE,preProcess=c(&quot;center&quot;,&quot;scale&quot;),importance=TRUE)</p>
+
+<p>We would then write the following command to view the variables ranked by importance in the model:</p>
+
+<p>varImp(modFit)</p>
+
+<p>The table in image5.jpg in the images folder illustrates the relative importance of each variable for determining each classe. We can see, for example, that pitch_forearm is a very important variable for determining the classe, whereas gyros_belt_z is not a particularly important variable in the model. This suggests that we may have been able to leave out this variable without adversely affecting the accuracy of the model very much.</p>
+
 <p>Citations:</p>
 
 <p>Velloso, E.; Bulling, A.; Gellersen, H.; Ugulino, W.; Fuks, H. Qualitative Activity Recognition of Weight Lifting Exercises. Proceedings of 4th International Conference in Cooperation with SIGCHI (Augmented Human '13). Stuttgart, Germany: ACM SIGCHI, 2013.</p>

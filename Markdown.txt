@@ -35,3 +35,7 @@ predictions <- predict(modFit,newdata=trainingtail)
 confusionMatrix(predictions,trainingtail$classe)
 
 modFit <- train(classe ~ .,data=training,method="rf",prox=TRUE,preProcess=c("center","scale"),number=10)
+
+modFit <- train(classe ~ .,data=traininghead,method="rf",prox=TRUE,preProcess=c("center","scale"),importance=TRUE)
+
+varImp(modFit)
