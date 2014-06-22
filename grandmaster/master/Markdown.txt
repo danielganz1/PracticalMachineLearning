@@ -1,0 +1,35 @@
+training <- read.csv("C:/.../pml-training.csv",header=T,sep=",")
+
+relVar <- which(grepl("^gyros_|^accel_|^magnet_|^roll_|^pitch_|^yaw_|classe", colnames(training), ignore.case = F))
+
+training <- training[,relVar]
+
+plot(training$classe,training$[variable name])
+
+training <- subset(training,select=c(roll_belt,yaw_belt,gyros_belt_z,accel_belt_y,accel_belt_z,magnet_belt_x,magnet_belt_y,magnet_belt_z,roll_arm,pitch_arm,accel_arm_x,accel_arm_z,magnet_arm_x,magnet_arm_y,magnet_arm_z,roll_dumbbell,pitch_dumbbell,yaw_dumbbell,gyros_dumbbell_y,accel_dumbbell_x,accel_dumbbell_y,magnet_dumbbell_x,magnet_dumbbell_y,magnet_dumbbell_z,roll_forearm,pitch_forearm,yaw_forearm,gyros_forearm_z,accel_forearm_x,accel_forearm_y,accel_forearm_z,magnet_forearm_x,magnet_forearm_y,magnet_forearm_z,classe))
+
+plot(training$[variable name], col=training$classe)
+
+training <- subset(training,select=c(roll_belt,gyros_belt_z,accel_belt_z,magnet_belt_x,magnet_belt_y,magnet_belt_z,gyros_dumbbell_y,accel_dumbbell_x,magnet_dumbbell_x,magnet_dumbbell_y,pitch_forearm,classe))
+
+library(caret)
+
+set.seed(30)
+
+training <- training[sample.int(nrow(training)),]
+
+traininghead <- head(training,2000)
+
+modFit <- train(classe ~ .,data=traininghead,method="rf",prox=TRUE,preProcess=c("center","scale"))
+
+print(modFit)
+
+predictions <- predict(modFit)
+
+confusionMatrix(predictions,traininghead$classe)
+
+trainingtail <- tail(training,500)
+
+predictions <- predict(modFit,newdata=trainingtail)
+
+confusionMatrix(predictions,trainingtail$classe)
